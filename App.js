@@ -12,6 +12,15 @@ class NavigationBar extends Component {
   }
 }
 
+class Bananas extends Component {
+  render() {
+    return (
+      // You can put any {JavaScript expression} inside braces in JSX.
+      <Image source={this.props.pic} style={{width: 193, height: 110}}/>
+    );
+  }
+}
+
 class Greeting extends Component {
   render() {
     return (
@@ -28,15 +37,6 @@ class LotsOfGreetings extends Component {
         <Greeting name='Ivan' />
         <Greeting name='Alexandr' />
       </View>
-    );
-  }
-}
-
-class Bananas extends Component {
-  render() {
-    return (
-      // You can put any {JavaScript expression} inside braces in JSX.
-      <Image source={this.props.pic} style={{width: 193, height: 110}}/>
     );
   }
 }
@@ -76,6 +76,21 @@ class LotsOfStyles extends Component {
   }
 }
 
+class FlexDimensionsBasics extends Component {
+  render() {
+    return (
+      // Try removing the `flex: 1` on the parent View.
+      // The parent will not have dimensions, so the children can't expand.
+      // What if you add `height: 300` instead of `flex: 1`?
+      <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: 'powderblue'}} />
+        <View style={{flex: 3, backgroundColor: 'skyblue'}} />
+        <View style={{flex: 2, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+}
+
 export default class HelloWorldApp extends Component {
   render() {
     let pic = {
@@ -93,6 +108,7 @@ export default class HelloWorldApp extends Component {
         <Blink text='I love to blink' />
         <Blink text='Yes blinking is so great' />
         <LotsOfStyles />
+        <FlexDimensionsBasics />
       </View>
     );
   }

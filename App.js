@@ -1,6 +1,6 @@
 //ES2015
 import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image, StyleSheet, ScrollView } from 'react-native';
 
 class NavigationBar extends Component {
   render() {
@@ -82,7 +82,7 @@ class FlexDimensionsBasics extends Component {
       // Try removing the `flex: 1` on the parent View.
       // The parent will not have dimensions, so the children can't expand.
       // What if you add `height: 300` instead of `flex: 1`?
-      <View style={{flex: 1}}>
+      <View style={{height: 300}}>
         <View style={{flex: 1, backgroundColor: 'powderblue'}} />
         <View style={{flex: 3, backgroundColor: 'skyblue'}} />
         <View style={{flex: 2, backgroundColor: 'steelblue'}} />
@@ -98,18 +98,31 @@ export default class HelloWorldApp extends Component {
     };
     return (
       // JSX
-      <View style={{backgroundColor:"#ecf7f9", height:'100%'}}>
-        {/* comment in JSX */}
-        <NavigationBar title="Hello World"/>
-        <View style={{width: '100%', height: 8}}/>
-        <Bananas pic={pic}></Bananas>
-        <Text>Hello Bananas!</Text>
-        <LotsOfGreetings />
-        <Blink text='I love to blink' />
-        <Blink text='Yes blinking is so great' />
-        <LotsOfStyles />
-        <FlexDimensionsBasics />
-      </View>
+      <ScrollView>      
+        <View style={{backgroundColor:"#ecf7f9", height:'100%'}}>
+          {/* comment in JSX */}
+          <NavigationBar title="Hello World"/>
+          <View style={{width: '100%', height: 8}}/>
+          
+          <Text style={styles.header}>PROPS</Text>
+          <Bananas pic={pic}></Bananas>
+          <Text>Hello Bananas!</Text>
+          <LotsOfGreetings />
+          
+          <Text style={styles.header}>STATE</Text>
+          <Blink text='I love to blink' />
+          <Blink text='Yes blinking is so great' />
+          
+          <Text style={styles.header}>STYLE</Text>
+          <LotsOfStyles />
+          
+          <Text style={styles.header}>SIZE</Text>
+          <FlexDimensionsBasics />
+
+          <Text style={styles.header}>LAYOUT</Text>
+
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -122,5 +135,12 @@ const styles = StyleSheet.create({
   },
   red: {
     color: 'red',
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    textAlign: 'center',
+    paddingTop: 16,
+    backgroundColor: "white"
   },
 });

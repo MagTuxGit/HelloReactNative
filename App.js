@@ -91,6 +91,60 @@ class FlexDimensionsBasics extends Component {
   }
 }
 
+class FlexDirectionBasics extends Component {
+  render() {
+    return (
+      // Try setting `flexDirection` to `column`.
+      // default is column
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+}
+
+class JustifyContentBasics extends Component {
+  render() {
+    return (
+      // Try setting `justifyContent` to `center`.
+      // Try setting `flexDirection` to `row`.
+      <View style={{
+        flex: 1,
+        flexDirection: 'row',
+        // flex-start, center, flex-end, space-around, space-between and space-evenly
+        justifyContent: 'space-evenly',
+      }}>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+}
+
+class AlignItemsBasics extends Component {
+  render() {
+    return (
+      // Try setting `alignItems` to 'flex-start'
+      // Try setting `justifyContent` to `flex-end`.
+      // Try setting `flexDirection` to `row`.
+      <View style={{
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        // flex-start, center, flex-end, stretch
+        alignItems: 'stretch',
+      }}>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{height: 50, backgroundColor: 'skyblue'}} />
+        <View style={{height: 100, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+}
+
 export default class HelloWorldApp extends Component {
   render() {
     let pic = {
@@ -98,10 +152,11 @@ export default class HelloWorldApp extends Component {
     };
     return (
       // JSX
+      <View>
+      <NavigationBar title="Hello World"/>
       <ScrollView>      
         <View style={{backgroundColor:"#ecf7f9", height:'100%'}}>
           {/* comment in JSX */}
-          <NavigationBar title="Hello World"/>
           <View style={{width: '100%', height: 8}}/>
           
           <Text style={styles.header}>PROPS</Text>
@@ -120,9 +175,14 @@ export default class HelloWorldApp extends Component {
           <FlexDimensionsBasics />
 
           <Text style={styles.header}>LAYOUT</Text>
+          <FlexDirectionBasics />
+          <JustifyContentBasics />
+          <AlignItemsBasics />
 
+          <Text style={styles.header}>TEXT INPUT</Text>
         </View>
       </ScrollView>
+      </View>
     );
   }
 }

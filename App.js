@@ -152,10 +152,10 @@ export default class HelloWorldApp extends Component {
     };
     return (
       // JSX
-      <View>
+      <View style={{flex:1}}>
       <NavigationBar title="Hello World"/>
-      <ScrollView>      
-        <View style={{backgroundColor:"#ecf7f9", height:'100%'}}>
+      <ScrollView>
+        <View style={{backgroundColor:"#ecf7f9"}}>
           {/* comment in JSX */}
           <View style={{width: '100%', height: 8}}/>
           

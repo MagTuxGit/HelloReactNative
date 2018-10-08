@@ -1,6 +1,6 @@
 //ES2015
 import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { Text, View, Image, StyleSheet, ScrollView,  TextInput, Button, Alert } from 'react-native';
 
 class NavigationBar extends Component {
   render() {
@@ -167,6 +167,43 @@ class PizzaTranslator extends Component {
   }
 }
 
+class ButtonBasics extends Component {
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+            color="#841584"
+          />
+        </View>
+        <View style={styles.alternativeLayoutButtonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="This looks great!"
+          />
+          <Button
+            onPress={this._onPressButton}
+            title="OK!"
+            color="#841584"
+          />
+        </View>
+      </View>
+    );
+  }
+}
+
 export default class HelloWorldApp extends Component {
   render() {
     let pic = {
@@ -203,6 +240,17 @@ export default class HelloWorldApp extends Component {
 
           <Text style={styles.header}>TEXT INPUT</Text>
           <PizzaTranslator />
+
+          <Text style={styles.header}>TOUCHES</Text>
+          {/*
+            <Button
+              onPress={() => {
+                Alert.alert('You tapped the button!');
+              }}
+              title="Press Me"
+            />          
+            */}
+            <ButtonBasics />
         </View>
       </ScrollView>
       </View>
@@ -226,4 +274,17 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     backgroundColor: "white"
   },
+
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+   },
+   buttonContainer: {
+     margin: 8
+   },
+   alternativeLayoutButtonContainer: {
+     margin: 20,
+     flexDirection: 'row',
+     justifyContent: 'space-between'
+   }  
 });

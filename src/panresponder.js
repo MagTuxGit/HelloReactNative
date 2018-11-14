@@ -23,7 +23,17 @@ class PanResponderExample extends React.Component {
   };
 
   _handlePanResponderGrant = (event, gestureState) => {
-    this._highlight();
+    //this._highlight();
+
+    this.touchLocation = {
+      x: event.nativeEvent.locationX,
+      y: event.nativeEvent.locationY
+    };
+    this.tapTimeOut = false;
+    this.singleTapTimer = setTimeout(() => {
+      this.tapTimeOut = true;
+      this.singleTapTimer = null;
+    }, 100);
   };
 
   _handlePanResponderMove = (event, gestureState) => {
@@ -33,10 +43,32 @@ class PanResponderExample extends React.Component {
   };
 
   _handlePanResponderEnd = (event, gestureState) => {
-    this._unHighlight();
+    //this._unHighlight();
+
     this._previousLeft += gestureState.dx;
     this._previousTop += gestureState.dy;
+
+    if (!this.tapTimeOut) {
+      if (
+        Math.abs(event.nativeEvent.locationX - this.touchLocation.x) < 10 &&
+        Math.abs(event.nativeEvent.locationY - this.touchLocation.y) < 10
+      ) {
+        this.onSingleTap(this.touchLocation);
+      }
+    }
+    this.release(event);
   };
+
+  release() {
+    if (this.singleTapTimer) {
+      clearTimeout(this.singleTapTimer);
+      this.singleTapTimer = null;
+    }
+  }
+
+  onSingleTap() {
+    this._changeColor();
+  }
 
   _panResponder = PanResponder.create({
     onStartShouldSetPanResponder: this._handleStartShouldSetPanResponder,
@@ -65,6 +97,15 @@ class PanResponderExample extends React.Component {
   }
 
   componentDidMount() {
+    this._updateNativeStyles();
+  }
+
+  _changeColor() {
+    if (this._circleStyles.style.backgroundColor == "rgb(0, 0, 255)") {
+      this._circleStyles.style.backgroundColor = "green";
+    } else {
+      this._circleStyles.style.backgroundColor = "rgb(0, 0, 255)";
+    }
     this._updateNativeStyles();
   }
 

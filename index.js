@@ -6,4 +6,4 @@ import PanResponderExample from "./src/panresponder";
 import CircleAnimationExample from "./src/circleAnimation";
 import { name as appName } from "./app.json";
 
-AppRegistry.registerComponent(appName, () => CircleAnimationExample);
+AppRegistry.registerComponent(appName, () => PanResponderExample);
